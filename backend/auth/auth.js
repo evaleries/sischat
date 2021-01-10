@@ -18,6 +18,16 @@ passport.use(
             const {email, jenis_kelamin, alamat} = req.body;
             username = username.toLowerCase();
             try {
+                let existingEmail = await UserModel.findOne({email});
+                let existingUsername = await UserModel.findOne({username});
+
+                if (existingEmail) {
+                    throw new BadRequestError('Email telah digunakan.');
+                }
+                if (existingUsername) {
+                    throw new BadRequestError('Username telah digunakan.')
+                }
+
                 const user = await UserModel.create({ 
                     username, password, email, jenis_kelamin, alamat
                 });
