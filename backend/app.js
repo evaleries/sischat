@@ -34,19 +34,13 @@ app.use(session({
     resave: false
 }))
 
-errorHandler.setErrorEventHandler(err => { console.error(error, 'error')})
-
 app.use('/', indexRouter);
 app.use('/online', (req, res, next) => res.render('users'));
 app.use('/auth', authRouter);
 app.use('/users', passport.authenticate('jwt', {session: false}), usersRouter);
 app.use('/message', passport.authenticate('jwt', {session: false}), messageRouter);
 
-app.use(function (err, req, res) {
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    return res.status(err.status || 500).json({error: true, message: err.message});
+app.use((error, req, res, next) => {
+    return res.status(error.statusCode || 500).json({ error: true, message: error.message || error.toString() });
 });
-
 module.exports = {app, server};
