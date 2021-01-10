@@ -146,10 +146,6 @@ Get conversations from specific user. `user_id = _id` on user.
 | --------- | --------- |
 | Authorization  | Bearer token from login |
 
-| Field  | Description |
-| --------- | --------- |
-| Authorization  | Bearer token from login |
-
 #### Success Response [WIP]
 
 #### Error Response
