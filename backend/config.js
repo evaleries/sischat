@@ -1,4 +1,5 @@
 require('dotenv').config();
+const bigInt = require('big-integer');
 
 module.exports = {
     JWT_SECRET: process.env.JWT_SECRET,
@@ -8,8 +9,8 @@ module.exports = {
     DB_USER: process.env.DB_USER,
     DB_PASS: process.env.DB_PASS,
     RSA: {
-        n: process.env.RSA_N,
-        e: process.env.RSA_E,
-        d: process.env.RSA_D
+        n: bigInt(process.env.RSA_N),
+        e: bigInt(process.env.RSA_E),
+        d: bigInt(process.env.RSA_D)
     }
 }
