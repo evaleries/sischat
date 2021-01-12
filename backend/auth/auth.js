@@ -36,6 +36,8 @@ passport.use(
                     throw new BadRequestError('Pendaftaran gagal!');
                 }
 
+                delete user.password;
+
                 return done(null, user);
             } catch (error) {
                 return done(error);

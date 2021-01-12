@@ -10,7 +10,7 @@ router.post(
     '/register',
     passport.authenticate('register', {session: false}),
     async (req, res, next) => {
-        res.json({
+        res.status(201).json({
             error: false,
             message: 'Pendaftaran berhasil',
             user: req.user
